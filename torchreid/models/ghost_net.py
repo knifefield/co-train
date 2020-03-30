@@ -167,7 +167,7 @@ class GhostNet(nn.Module):
         block = GhostBottleneck
         output_channel = 0
         layers = []
-        for k, exp_size, c, use_se, s in self.cfgs[start, end]:
+        for k, exp_size, c, use_se, s in self.cfgs[start: end]:
             output_channel = _make_divisible(c * width_mult, 4)
             hidden_channel = _make_divisible(exp_size * width_mult, 4)
             layers.append(block(input_channel, hidden_channel, output_channel, k, s, use_se))
@@ -225,10 +225,10 @@ class GhostNetCommonBranch(nn.Module):
             backbone.conv1,
             backbone.bn1,
             backbone.relu,
-            backbone.maxpool,
+            # backbone.maxpool,
             backbone.layer1
         )
-        self.shallow_cam = ShallowCAM(args, 256)
+        self.shallow_cam = ShallowCAM(args, 40)
         self.backbone2 = nn.Sequential(
             backbone.layer2,
             backbone.layer3,
@@ -252,7 +252,7 @@ class GhostNetDeepBranch(nn.Module):
 
         self.backbone = deepcopy(backbone.layer4)
 
-        self.out_dim = 2048
+        self.out_dim = 960
 
     def backbone_modules(self):
         return [self.backbone]
@@ -276,7 +276,7 @@ def ghost_net(num_classes, args, **kw):
 
 
 if __name__ == '__main__':
-    model = ghost_net()
+    model = ghost_net(12, args=vars(args))
     model.eval()
     print(model)
     input = torch.randn(32, 3, 224, 224)
