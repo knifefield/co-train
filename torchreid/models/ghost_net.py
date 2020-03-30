@@ -140,7 +140,8 @@ class GhostNet(nn.Module):
         output_channel, self.layer1 = self._make_layer(0, 4, input_channel, width_mult)
         output_channel, self.layer2 = self._make_layer(4, 6, output_channel, width_mult)
         output_channel, self.layer3 = self._make_layer(6, 12, output_channel, width_mult)
-        output_channel, self.layer4 = self._make_layer(12, 16, output_channel, width_mult)
+        output_channel, self.last = self._make_layer(12, 16, output_channel, width_mult)
+
 
         # building last several layers
         output_channel = _make_divisible(960 * width_mult, 4)
@@ -149,6 +150,11 @@ class GhostNet(nn.Module):
             nn.BatchNorm2d(output_channel),
             nn.ReLU(inplace=True),
             nn.AdaptiveAvgPool2d((1, 1)),
+        )
+
+        self.layer4 = nn.Sequential(
+            self.last,
+            self.squeeze(),
         )
         input_channel = output_channel
 
