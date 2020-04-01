@@ -19,3 +19,4 @@ python train.py -s market1501 -t market1501 \
     --abd-np 2 \
     --shallow-cam \
     --use-ow
+    --workers 0

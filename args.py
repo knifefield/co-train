@@ -14,7 +14,7 @@ def argument_parser():
                         help="source datasets (delimited by space)")
     parser.add_argument('-t', '--target-names', type=str, required=True, nargs='+',
                         help="target datasets (delimited by space)")
-    parser.add_argument('-j', '--workers', default=4, type=int,
+    parser.add_argument('-j', '--workers', default=0, type=int,
                         help="number of data loading workers (tips: 4 or 8 times number of gpus)")
     parser.add_argument('--height', type=int, default=256,
                         help="height of an image")
