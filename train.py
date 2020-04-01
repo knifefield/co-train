@@ -73,16 +73,14 @@ def main():
     else:
         print("Currently using CPU, however, GPU is highly recommended")
 
-    print("Initializing model: {}".format(args.arch))
-    model = models.init_model(name=args.arch, num_classes=dm.num_train_pids, loss={'xent'}, use_gpu=use_gpu, args=vars(args))
-    print(model)
-    print("Model size: {:.3f} M".format(count_num_param(model)))
-
-
     print("Initializing image data manager")
     dm = ImageDataManager(use_gpu, **image_dataset_kwargs(args))
     trainloader, testloader_dict = dm.return_dataloaders()
 
+    print("Initializing model: {}".format(args.arch))
+    model = models.init_model(name=args.arch, num_classes=dm.num_train_pids, loss={'xent'}, use_gpu=use_gpu, args=vars(args))
+    print(model)
+    print("Model size: {:.3f} M".format(count_num_param(model)))
 
     criterion = get_criterion(dm.num_train_pids, use_gpu, args)
     regularizer = get_regularizer(vars(args))
