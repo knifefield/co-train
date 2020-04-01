@@ -23,7 +23,7 @@ from . import densenet, resnet, ghost_net
 
 __model_factory = {
     **densenet.model_mapping,
-    'ghostnet': ghost_net.ghostnet,
+    'ghostnet': ghost_net.ghost_net,
     'resnet50': resnet.resnet50,
     'resnet50_mgn_like': resnet.resnet50_mgn_like,
     'resnext50_32x4d': resnext50_32x4d,
