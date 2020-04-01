@@ -10,10 +10,10 @@ python train.py -s market1501 -t market1501 \
     --width 128 \
     --optim adam --lr 0.0003 \
     --stepsize 20 40 \
-    --gpu-devices 4,5 \
+    --gpu-devices 0 \
     --max-epoch 80 \
     --save-dir path/to/dir \
-    --arch resnet50 \
+    --arch ghostnet \
     --use-of \
     --abd-dan cam pam \
     --abd-np 2 \

@@ -154,7 +154,7 @@ class GhostNet(nn.Module):
 
         self.layer4 = nn.Sequential(
             self.last,
-            self.squeeze(),
+            self.squeeze,
         )
         input_channel = output_channel
 
@@ -232,7 +232,7 @@ class GhostNetCommonBranch(nn.Module):
             backbone.bn1,
             backbone.relu,
             # backbone.maxpool,
-            backbone.layer1
+            backbone.layer1,
         )
         self.shallow_cam = ShallowCAM(args, 40)
         self.backbone2 = nn.Sequential(
