@@ -122,8 +122,8 @@ class GhostNet(nn.Module):
         # building first layer
         output_channel = _make_divisible(16 * width_mult, 4)
 
-        self.conv1 = nn.Conv2d(3, output_channel, 3, 2, 1, bias=False),
-        self.bn1 = nn.BatchNorm2d(output_channel),
+        self.conv1 = nn.Conv2d(3, output_channel, 3, 2, 1, bias=False)
+        self.bn1 = nn.BatchNorm2d(output_channel)
         self.relu = nn.ReLU(inplace=True)
 
         input_channel = output_channel
@@ -232,7 +232,7 @@ class GhostNetCommonBranch(nn.Module):
             backbone.bn1,
             backbone.relu,
             # backbone.maxpool,
-            backbone.layer1,
+            backbone.layer1
         )
         self.shallow_cam = ShallowCAM(args, 40)
         self.backbone2 = nn.Sequential(
