@@ -141,7 +141,7 @@ class GhostNet(nn.Module):
         output_channel, self.layer2 = self._make_layer(4, 6, output_channel, width_mult)
         output_channel, self.layer3 = self._make_layer(6, 12, output_channel, width_mult)
         output_channel, self.last = self._make_layer(12, 16, output_channel, width_mult)
-
+        input_channel = output_channel
 
         # building last several layers
         output_channel = _make_divisible(960 * width_mult, 4)
