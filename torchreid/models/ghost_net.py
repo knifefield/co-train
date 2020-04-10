@@ -149,7 +149,7 @@ class GhostNet(nn.Module):
             nn.Conv2d(input_channel, output_channel, 1, 1, 0, bias=False),
             nn.BatchNorm2d(output_channel),
             nn.ReLU(inplace=True),
-            nn.AdaptiveAvgPool2d((1, 1)),
+            # nn.AdaptiveAvgPool2d((1, 1)),
         )
 
         self.layer4 = nn.Sequential(
