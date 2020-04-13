@@ -247,6 +247,8 @@ def train(epoch, model, criterion, regularizer, optimizer, trainloader, use_gpu,
             imgs, pids = imgs.cuda(), pids.cuda()
 
         outputs = model(imgs)
+        print("output_type:")
+        print(type(outputs))
         loss = criterion(outputs, pids)
         if not fixbase:
             reg = regularizer(model)
